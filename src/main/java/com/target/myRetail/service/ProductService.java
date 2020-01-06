@@ -1,6 +1,7 @@
 package com.target.myRetail.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.target.myRetail.domain.Price;
 import com.target.myRetail.domain.Product;
 import com.target.myRetail.feignClient.ProductClient;
 import com.target.myRetail.repository.ProductRepository;
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -31,16 +34,23 @@ public class ProductService {
      * @throws JsonMappingException
      * @throws IOException
      */
-    public Product getProductById(String productId) throws JsonParseException, JsonMappingException, IOException {
+    public Product getProductById(String productId) throws Exception {
+        Product product = new Product();
         // Db call.
-        Product product = productRepository.getProductByproductId(productId);
+        Optional<Price> optionalPrice = productRepository.findById(Integer.parseInt(productId));
+        Price price = optionalPrice.get();
+        product.setId(price.getId());
+        Map<String, Object> currentPrice = new HashMap<String, Object>();
+        currentPrice.put("value", price.getValue());
+        currentPrice.put("currency_code", price.getCurrencyCode());
+        product.setCurrent_price(currentPrice);
         // API call.
-        product.setProductName(getProductName(productId));
-        logger.info("Product Name from API   "+ product.getProductName());
+        product.setName(getProductName(productId));
+        logger.info("Product Name from API   " + product.getName());
         return product;
     }
 
-    private String getProductName(String productId) throws JsonParseException, JsonMappingException, IOException {
+    private String getProductName(String productId) throws Exception {
         ObjectMapper infoMapper = new ObjectMapper();
         ResponseEntity<String> response = productClient.getProductInfoById(productId);
 

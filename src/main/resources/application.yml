@@ -1,0 +1,13 @@
+#MongoDB
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: myRetail
+feign:
+  client:
+    config:
+      feignName:
+        connectTimeout: 5000
+        readTimeout: 5000
