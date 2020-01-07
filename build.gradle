@@ -40,6 +40,12 @@ dependencies {
 //    compile group: 'io.springfox', name: 'springfox-swagger-ui'
 
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
-    testCompile group: 'org.spockframework', name: 'spock-core'
+
+    // Spock testing
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.8', ext: 'pom'
+    testCompile group: 'junit', name: 'junit', version: '4.13'
+    testCompile group: 'org.spockframework', name: 'spock-spring', version: '1.3-groovy-2.5'
+    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.3-groovy-2.5'
+    testCompile group: 'com.athaydes', name: 'spock-reports', version: '1.2.10'
 
 }

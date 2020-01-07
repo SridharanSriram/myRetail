@@ -3,8 +3,8 @@ package com.target.myRetail.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.target.myRetail.domain.Price;
 import com.target.myRetail.domain.Product;
-import com.target.myRetail.feignClient.ProductClient;
 import com.target.myRetail.repository.ProductRepository;
+import com.target.myRetail.repository.PriceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +22,10 @@ public class ProductService {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private ProductClient productClient;
+    private ProductRepository productRepository;
 
     @Autowired
-    private ProductRepository productRepository;
+    private PriceRepository priceRepository;
 
     /**
      * @param productId
@@ -37,7 +37,7 @@ public class ProductService {
     public Product getProductById(String productId) throws Exception {
         Product product = new Product();
         // Db call.
-        Optional<Price> optionalPrice = productRepository.findById(Integer.parseInt(productId));
+        Optional<Price> optionalPrice = priceRepository.findById(Integer.parseInt(productId));
         Price price = optionalPrice.get();
         product.setId(price.getId());
         Map<String, Object> currentPrice = new HashMap<String, Object>();
@@ -52,7 +52,7 @@ public class ProductService {
 
     private String getProductName(String productId) throws Exception {
         ObjectMapper infoMapper = new ObjectMapper();
-        ResponseEntity<String> response = productClient.getProductInfoById(productId);
+        ResponseEntity<String> response = productRepository.getProductInfoById(productId);
 
         Map<String, Map> infoMap = infoMapper.readValue(response.getBody(), Map.class);
         Map<String,Map> productMap = infoMap.get("product");
@@ -60,5 +60,9 @@ public class ProductService {
         Map<String,String> productDescriptionMap = itemMap.get("product_description");
 
         return productDescriptionMap.get("title");
+    }
+
+    public Price savePriceDetail(Price price) {
+        return priceRepository.save(price);
     }
 }
