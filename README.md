@@ -39,7 +39,7 @@ BONUS: Accepts an HTTP PUT request at the same path (/products/{id}), containing
 
 **Running Steps:**
 1. Follow above steps and install.
-2. Clone git project from git bash and run - gradle clean build command
+2. Clone or download ZIP from git project from github (git@github.com:SridharanSriram/myRetail.git) and run gradle clean build command
 3. Import project to IDE and run spring boot application. 
 
 Mongo DB -
