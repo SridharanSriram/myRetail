@@ -50,6 +50,7 @@ class ProductControllerSpec extends Specification {
         thrown(ProductNotAvailable)
     }
 
+    @Unroll
     def "[TestCase] - test savePriceDetail - #scenario"() {
         when:
         ResponseEntity<Response> priceDetail =  productController.savePriceDetail(price, productId)
