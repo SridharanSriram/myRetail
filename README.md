@@ -40,8 +40,28 @@ Environment (Download/ Installation Steps):
 Running Steps:
 1. Follow above steps and install.
 2. Clone git project from git bash and run - gradle clean build command
-3. Import project to IDE and run application. 
-4. To run the application: Run mongo DB from the command prompt.
+3. Import project to IDE and run spring boot application. 
 
-Swagger2 documentation path: http://localhost:8080/swagger-ui.html
+Run mongo DB from the command prompt - path : /MongoDB/Server/4.2/bin/mongo.exe
+Create mongo db database with command - use myRetail
 
+
+Response (Result) :
+
+Swagger documentation path: http://localhost:8080/swagger-ui.html
+![SwaggerAPI](https://user-images.githubusercontent.com/26497798/71950978-e2ed0780-319e-11ea-886a-2e99c50e8bee.jpg)
+
+Swagger GET Call:
+![Swagger-GetData](https://user-images.githubusercontent.com/26497798/71950979-e3859e00-319e-11ea-9747-b243d58f32d0.jpg)
+
+ARC GET Call: http://localhost:8080/products/{id}
+![Get_Postive_Result](https://user-images.githubusercontent.com/26497798/71950975-e2ed0780-319e-11ea-8f09-a00b1efbe0a4.jpg)
+
+ARC GET Call (Negative Result): http://localhost:8080/products/{id}
+![Get_Negative_Result](https://user-images.githubusercontent.com/26497798/71950974-e2547100-319e-11ea-8b4c-a3e50e6be2cb.jpg)
+
+ARC PUT Call:
+![Put_Data](https://user-images.githubusercontent.com/26497798/71950976-e2ed0780-319e-11ea-943d-83d621d02516.jpg)
+
+ARC POST Call:
+![Save_Data](https://user-images.githubusercontent.com/26497798/71950977-e2ed0780-319e-11ea-9a2f-7944a725e1b0.jpg)
