@@ -66,3 +66,6 @@ Create mongo db database with command - use myRetail
 
 **ARC POST Call:**
 ![Save_Data](https://user-images.githubusercontent.com/26497798/71950977-e2ed0780-319e-11ea-9a2f-7944a725e1b0.jpg)
+
+**Run Spock Test**
+Spock test can be run from intellij by right clicking on the project - test package and select run.
