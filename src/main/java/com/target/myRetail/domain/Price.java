@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 
 public class Price {
     @Id
-    @NotNull(message = "product id cannot be null")
     private Integer id;
 
     @Min(value = 1, message = "the value cannot be zero")

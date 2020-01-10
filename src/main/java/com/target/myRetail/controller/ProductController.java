@@ -19,6 +19,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Api(value="MyRetail", description = "Save/Retrieve/Update product and price Detail by product id")
 @RequestMapping(value = "/products")
 @RestController
@@ -60,7 +62,7 @@ public class ProductController {
             @ApiResponse(code = 404, message = "Product not available")
     })
     @PostMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> savePriceDetail(@RequestBody Price price, @PathVariable("id") String productId) {
+    public ResponseEntity<Response> savePriceDetail(@Valid @RequestBody Price price, @PathVariable("id") String productId) {
         logger.info("start - savePriceDetail  " + productId);
         if(productId == null || productId.isEmpty()) {
             throw new ItemNotFountException();
@@ -83,7 +85,7 @@ public class ProductController {
             @ApiResponse(code = 404, message = "Product not available")
     })
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> updatePriceDetail(@RequestBody Price price, @PathVariable("id") String productId) {
+    public ResponseEntity<Response> updatePriceDetail(@Valid @RequestBody Price price, @PathVariable("id") String productId) {
         logger.info("start - updatePriceDetail  " + productId);
         if(productId == null || productId.isEmpty()) {
             throw new ItemNotFountException();
